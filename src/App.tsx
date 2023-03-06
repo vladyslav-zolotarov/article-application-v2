@@ -1,23 +1,53 @@
-// import { useEffect } from 'react';
-// import { getArticlePosts } from './api/endpoints';
-
-import useSWR from 'swr';
-import { IPost } from './types/types';
-import { fetcher } from './api/fetcher';
-import { getArticles } from './api/endpoints';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage';
 
 function App() {
-  const { data, error, isLoading } = useSWR<IPost[]>(getArticles, fetcher);
+  return (
+    <div className='App'>
+      <BrowserRouter>
+        <div className='flex-1 text-slate-900 dark:text-slate-300 bg-gray-100 dark:bg-slate-900'>
+          <div className='max-w-7xl mx-auto py-7'>
+            <Routes>
+              <Route
+                path='/'
+                element={<HomePage />}
+              />
+              <Route
+                path={'/auth/register'}
+                // element={<RegisterPage />}
+              />
+              <Route
+                path={'/auth/login'}
+                // element={<LoginPage />}
+              />
 
-  if (isLoading) {
-    return <h1>isLoading</h1>;
-  }
+              <Route
+                path={'/auth/me'}
+                // element={<UserPage />}
+              />
+              <Route
+                path={'/post/:id'}
+                // element={<ArticlePage />}
+              />
 
-  if (error) {
-    return <h1>Error</h1>;
-  }
-
-  return <div className='App'>{data && <h1>initial</h1>}</div>;
+              <Route
+                path={'/posts/my'}
+                // element={<MyArticlesListPage />}
+              />
+              <Route
+                path={'/post/create'}
+                // element={<NewArticlePage />}
+              />
+              <Route
+                path={'/post/edit/:id'}
+                // element={<EditArticlePage />}
+              />
+            </Routes>
+          </div>
+        </div>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
