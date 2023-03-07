@@ -1,7 +1,7 @@
 import { UseFormRegister } from 'react-hook-form';
-import { ILoginUser } from '../../../types/types';
+import { IRegisterForm } from '../../../types/types';
 
-export const registerPassword = (register: UseFormRegister<ILoginUser>) =>
+export const registerPassword = (register: UseFormRegister<IRegisterForm>) =>
   register('password', {
     required: 'This field is required. Please enter your password!',
     minLength: {

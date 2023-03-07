@@ -25,3 +25,17 @@ export interface ILoginUser {
   password: IUser['passwordHash'];
   token: string;
 }
+
+export interface IRegisterUser {
+  fullName: Pick<IUser, 'fullName'>;
+  email: Pick<IUser, 'email'>;
+  password: IUser['passwordHash'];
+  token: string;
+}
+
+export interface IRegisterForm {
+  fullName?: Pick<IUser, 'fullName'>;
+  email: Pick<IUser, 'email'>;
+  password: IUser['passwordHash'];
+  token?: string;
+}

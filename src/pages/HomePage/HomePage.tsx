@@ -5,8 +5,8 @@ import LoginPage from '../LoginPage/LoginPage';
 const HomePage = () => {
   return (
     <div>
-      {/* <ArticleList /> */}
-      <LoginPage />
+      <ArticleList />
+      {/* <LoginPage /> */}
     </div>
   );
 };
