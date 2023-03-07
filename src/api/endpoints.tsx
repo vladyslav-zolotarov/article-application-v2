@@ -1,11 +1,59 @@
-import { baseURL } from './fetcher';
+import axios from 'axios';
 
-export const getArticles = `${baseURL}/posts`;
-export const getOneArticle = `${baseURL}/posts`;
-export const addNewArticle = `${baseURL}/posts`;
-export const removeArticle = `${baseURL}/posts`;
-export const updateArticle = `${baseURL}/posts`;
+export const onLogin = async (url: string, { arg }: { arg: {} }) => {
+  const response = axios.post(url, arg).then(response => {
+    return response.data;
+  });
+  return await response;
+};
 
-export const login = `${baseURL}/auth/login`;
-export const register = `${baseURL}/auth/register`;
-export const getMe = `${baseURL}/auth/me`;
+export const onRegister = async (url: string, { arg }: { arg: {} }) => {
+  const response = axios.post(url, arg).then(response => {
+    return response.data;
+  });
+  return await response;
+};
+
+// export const getOneArticlePost = async (id: string) => {
+//     return await api.get<IPost>(`/posts/${id}`)
+// }
+
+// export const addNewArticle = async (data: {}, token: string) => {
+//     return await api.post<IPost>('/posts', data, {
+//         headers: {
+//             "Authorization": `Bearer ${token}`
+//         }
+//     })
+// }
+
+// export const removeOneArticlePost = async (id: string, token: string) => {
+//     return await api.delete(`/posts/${id}`, {
+//         headers: {
+//             "Authorization": `Bearer ${token}`
+//         }
+//     });
+// }
+
+// export const updateOneArticlePost = async (id: string, data: {}, token: string) => {
+//     return await api.patch(`/posts/${id}`, data, {
+//         headers: {
+//             "Authorization": `Bearer ${token}`
+//         }
+//     });
+// }
+
+// export const onLogin = async (data: {}) => {
+//     return await api.post<IUserLogin>('/auth/login', data);
+// }
+
+// export const onRegistration = async (data: {}) => {
+//     return await api.post<IUserRegister>('/auth/register', data);
+// }
+
+// export const getMe = async (token: string) => {
+//     return await api.get<IUser>('/auth/me', {
+//         headers: {
+//             "Authorization": `Bearer ${token}`
+//         }
+//     })
+// }

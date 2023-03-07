@@ -1,11 +1,11 @@
 export interface IUser {
-  _id?: string;
+  _id: string;
   fullName: string;
   email: string;
-  avatarUrl?: string;
-  createdAt?: string;
+  avatarUrl: string;
+  createdAt: string;
   passwordHash: string;
-  updatedAt?: string;
+  updatedAt: string;
 }
 
 export interface IPost {
@@ -18,4 +18,10 @@ export interface IPost {
   user: IUser;
   imageUrl: string;
   tags: Array<string>;
+}
+
+export interface ILoginUser {
+  email: Pick<IUser, 'email'>;
+  password: IUser['passwordHash'];
+  token: string;
 }
