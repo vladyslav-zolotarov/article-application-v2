@@ -1,16 +1,19 @@
 import { useState } from 'react';
-import useSWRMutation from 'swr/mutation';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import request from 'axios';
+import useSWRMutation from 'swr/mutation';
 import { onLogin } from '../../api/endpoints';
 import { loginURL } from '../../api/fetcher';
-import { ILoginUser, IUser } from '../../types/types';
-import { FormInput } from '../../components/Form/FormInput/FormInput';
-import { FormErrorMessage } from '../../components/Form/FormErrorMessage/FormErrorMessage';
-import { FormLabel } from '../../components/Form/FormLabel/FormLabel';
-import { FormButton } from '../../components/Form/FormButton/FormButton';
-import { registerEmail } from '../../components/Form/helper/registerEmail';
-import { registerPassword } from '../../components/Form/helper/registerPassword';
+import { IRegisterForm } from '../../types/types';
+import {
+  FormButton,
+  FormInput,
+  FormErrorMessage,
+  FormLabel,
+  registerEmail,
+  registerPassword,
+} from '../../components/Form/index';
+
 import { CgSpinnerTwo } from 'react-icons/cg';
 
 const LoginPage = () => {
@@ -19,11 +22,11 @@ const LoginPage = () => {
     handleSubmit,
     register,
     formState: { errors, isValid },
-  } = useForm<ILoginUser>({ mode: 'onChange' });
+  } = useForm<IRegisterForm>({ mode: 'onChange' });
 
   const { trigger } = useSWRMutation(loginURL, onLogin);
 
-  const onHandleSubmit: SubmitHandler<ILoginUser> = async formData => {
+  const onHandleSubmit: SubmitHandler<IRegisterForm> = async formData => {
     try {
       const data = await trigger(formData);
       if ('token' in data) {

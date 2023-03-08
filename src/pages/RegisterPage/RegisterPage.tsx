@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
-import { useForm, SubmitHandler, UseFormRegister } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import request from 'axios';
-import { onLogin, onRegister } from '../../api/endpoints';
-import { loginURL, registerURL } from '../../api/fetcher';
+import { onRegister } from '../../api/endpoints';
+import { registerURL } from '../../api/fetcher';
 import { IRegisterForm } from '../../types/types';
-import { FormInput } from '../../components/Form/FormInput/FormInput';
-import { FormErrorMessage } from '../../components/Form/FormErrorMessage/FormErrorMessage';
-import { FormLabel } from '../../components/Form/FormLabel/FormLabel';
-import { FormButton } from '../../components/Form/FormButton/FormButton';
-import { registerEmail } from '../../components/Form/helper/registerEmail';
-import { registerPassword } from '../../components/Form/helper/registerPassword';
+import {
+  FormButton,
+  FormInput,
+  FormErrorMessage,
+  FormLabel,
+  registerEmail,
+  registerPassword,
+} from '../../components/Form/index';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { registerFullName } from '../../components/Form/helper/registerFullName';
 

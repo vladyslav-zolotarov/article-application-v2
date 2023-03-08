@@ -1,15 +1,11 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 
-interface FormErrorMessageProps extends React.HTMLAttributes<HTMLSpanElement> {}
-
-export const FormErrorMessage = forwardRef<
-  HTMLSpanElement,
-  FormErrorMessageProps
->((props, ref) => {
+export const FormErrorMessage = (
+  props: React.HTMLAttributes<HTMLSpanElement>
+) => {
   const { children } = props;
   return (
     <span
-      ref={ref}
       {...props}
       className={
         'form_error_message text-sm text-red-500 block absolute bottom-0'
@@ -17,4 +13,4 @@ export const FormErrorMessage = forwardRef<
       {children}
     </span>
   );
-});
+};
