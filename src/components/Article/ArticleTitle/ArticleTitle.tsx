@@ -18,6 +18,6 @@ export const ArticleTitle = (props: ArticleTitleProps) => {
       {children} {article.title}
     </h2>
   ) : (
-    <h2 className='article-title --skeleton'></h2>
+    <h2 className='article-title --skeleton h-8 w-60 mb-6 rounded-full w-2/4 bg-gray-200'></h2>
   );
 };

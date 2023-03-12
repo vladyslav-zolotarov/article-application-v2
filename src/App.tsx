@@ -7,7 +7,7 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
-        <div className='flex-1 text-slate-900 dark:text-slate-300 bg-gray-100 dark:bg-slate-900'>
+        <div className='flex-1 text-slate-900 dark:text-slate-300 bg-gray-100 relative'>
           <div className='max-w-7xl mx-auto py-7'>
             <Routes>
               <Route

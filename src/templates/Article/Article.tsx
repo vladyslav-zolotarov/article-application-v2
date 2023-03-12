@@ -9,7 +9,7 @@ import {
 import { IArticle } from '../../types/types';
 
 interface ArticleProps {
-  article: IArticle;
+  article?: IArticle;
 }
 
 const Article = ({ article }: ArticleProps) => {
@@ -22,9 +22,8 @@ const Article = ({ article }: ArticleProps) => {
         article={article}
       />
       <ArticleTitle article={article} />
-      <div className='mb-3 line-clamp-2 block font-normal text-gray-700'>
-        <ArticleText article={article} />
-      </div>
+
+      <ArticleText article={article} />
       <div className='flex justify-between'>
         <ArticleTags article={article} />
 

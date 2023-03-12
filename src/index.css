@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.loading-wrapper {
+  @apply absolute left-0 top-0 bottom-0 w-full flex justify-center items-center bg-gray-600 opacity-30;
+}
+
+.loading-text {
+  @apply text-white text-4xl font-semibold tracking-wider;
+}
+
 @keyframes spinner {
   0% {
     transform: rotate(0deg);

@@ -6,20 +6,38 @@ import useSWR from 'swr';
 
 const ArticleList = () => {
   const { data, error, isLoading } = useSWR<IArticle[]>(
-    getArticlesURL,
+    `${getArticlesURL}`,
     fetcher
   );
 
-  // if (isLoading) {
-  //   return <h1>🌀🌀🌀 Loading 🌀🌀🌀</h1>;
-  // }
+  if (isLoading) {
+    return (
+      <div className='articles --skeleton grid grid-cols-2 gap-6'>
+        <div className='loading-wrapper'>
+          <h2 className='loading-text'>Loading ...</h2>
+        </div>
+        {[...Array(4)].map((item, key) => {
+          return <Article key={key} />;
+        })}
+      </div>
+    );
+  }
 
   if (error) {
-    return <h1>Error</h1>;
+    return (
+      <div className='articles --skeleton grid grid-cols-2 gap-6'>
+        {/* <div className='loading-wrapper'>
+          <h2 className='loading-text'>Error</h2>
+        </div> */}
+        {[...Array(4)].map((item, key) => {
+          return <Article key={key} />;
+        })}
+      </div>
+    );
   }
 
   return (
-    <>
+    <div className='articles grid grid-cols-2 gap-6'>
       {data &&
         data.map(article => (
           <Article
@@ -27,7 +45,7 @@ const ArticleList = () => {
             article={article}
           />
         ))}
-    </>
+    </div>
   );
 };
 

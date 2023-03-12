@@ -28,7 +28,7 @@ export const ArticleTags = (props: ArticleTagsProps) => {
             return (
               <li
                 key={key}
-                className='article-tags --skeleton'
+                className='article-tags --skeleton bg-gray-200 h-4 w-14 mr-2 px-2.5 py-0.5 rounded-full'
               />
             );
           })}
