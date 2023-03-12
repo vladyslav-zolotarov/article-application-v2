@@ -29,7 +29,10 @@ const Article = ({ article }: ArticleProps) => {
         <ArticleTags article={article} />
 
         <div className='flex justify-end'>
-          <ArticleDate article={article} />
+          <ArticleDate
+            className='mr-5'
+            article={article}
+          />
           <ArticleViewCount article={article} />
         </div>
       </div>

@@ -3,8 +3,7 @@ import format from 'date-fns/format';
 import { IArticle } from '../../../types/types';
 import { twMerge } from 'tailwind-merge';
 
-export interface ArticleDateProps
-  extends React.ComponentPropsWithoutRef<'span'> {
+interface ArticleDateProps extends React.ComponentPropsWithoutRef<'span'> {
   article?: IArticle;
 }
 

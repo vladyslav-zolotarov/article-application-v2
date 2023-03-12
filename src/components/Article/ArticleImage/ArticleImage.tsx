@@ -3,8 +3,7 @@ import { IArticle } from '../../../types/types';
 import { IoRocket } from 'react-icons/io5';
 import { twMerge } from 'tailwind-merge';
 
-export interface ArticleImageProps
-  extends React.ComponentPropsWithoutRef<'img'> {
+interface ArticleImageProps extends React.ComponentPropsWithoutRef<'img'> {
   article?: IArticle;
   height?: string;
   width?: string;

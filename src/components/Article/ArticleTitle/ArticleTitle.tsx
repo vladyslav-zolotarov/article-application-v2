@@ -2,8 +2,7 @@ import React from 'react';
 import { IArticle } from '../../../types/types';
 import { twMerge } from 'tailwind-merge';
 
-export interface ArticleTitleProps
-  extends React.ComponentPropsWithoutRef<'h2'> {
+interface ArticleTitleProps extends React.ComponentPropsWithoutRef<'h2'> {
   article?: IArticle;
 }
 

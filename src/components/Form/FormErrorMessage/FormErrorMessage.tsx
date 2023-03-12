@@ -1,9 +1,10 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-export const FormErrorMessage = (
-  props: React.HTMLAttributes<HTMLSpanElement>
-) => {
+interface FormErrorMessageProps
+  extends React.ComponentPropsWithoutRef<'span'> {}
+
+export const FormErrorMessage = (props: FormErrorMessageProps) => {
   const { children, className } = props;
   return (
     <span

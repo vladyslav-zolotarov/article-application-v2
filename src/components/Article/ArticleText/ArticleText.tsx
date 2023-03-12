@@ -2,8 +2,7 @@ import React from 'react';
 import { IArticle } from '../../../types/types';
 import { twMerge } from 'tailwind-merge';
 
-export interface ArticleTextProps
-  extends React.ComponentPropsWithoutRef<'span'> {
+interface ArticleTextProps extends React.ComponentPropsWithoutRef<'span'> {
   article?: IArticle;
 }
 

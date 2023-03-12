@@ -1,9 +1,9 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-export const FormLabel = (
-  props: React.LabelHTMLAttributes<HTMLLabelElement>
-) => {
+interface FormLabelProps extends React.ComponentPropsWithoutRef<'label'> {}
+
+export const FormLabel = (props: FormLabelProps) => {
   const { children, className } = props;
   return (
     <label

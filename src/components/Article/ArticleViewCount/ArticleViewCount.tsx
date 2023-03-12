@@ -3,8 +3,7 @@ import { IArticle } from '../../../types/types';
 import { twMerge } from 'tailwind-merge';
 import { HiEye } from 'react-icons/hi';
 
-export interface ArticleViewCountProps
-  extends React.ComponentPropsWithoutRef<'span'> {
+interface ArticleViewCountProps extends React.ComponentPropsWithoutRef<'span'> {
   article?: IArticle;
 }
 
