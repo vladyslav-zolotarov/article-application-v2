@@ -5,6 +5,8 @@ import useSWRMutation from 'swr/mutation';
 import { onLogin } from '../../api/endpoints';
 import { loginURL } from '../../api/fetcher';
 import { IRegisterForm } from '../../types/types';
+import { CgSpinnerTwo } from 'react-icons/cg';
+import { IoRocket } from 'react-icons/io5';
 import {
   FormButton,
   FormInput,
@@ -13,8 +15,6 @@ import {
   registerEmail,
   registerPassword,
 } from '../../components/Form/index';
-
-import { CgSpinnerTwo } from 'react-icons/cg';
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -46,12 +46,15 @@ const LoginPage = () => {
       <form
         className='py-9 max-w-sm mx-auto flex flex-col justify-center align-center'
         onSubmit={handleSubmit(onHandleSubmit)}>
-        <h1 className='mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white'>
-          Login page
+        <IoRocket className='w-16 h-16 mx-auto mb-8' />
+        <h1 className='mb-6 text-6xl font-extrabold text-gray-900 text-center'>
+          Login
         </h1>
 
         <div className='email_input pb-6 mb-2 relative'>
-          <FormLabel>Email</FormLabel>
+          <FormLabel>
+            📧 <span className='ml-2'>Email</span>
+          </FormLabel>
           <FormInput
             {...registerEmail(register)}
             type='email'
@@ -62,7 +65,9 @@ const LoginPage = () => {
         </div>
 
         <div className='password_input pb-6 mb-2 relative'>
-          <FormLabel>Password</FormLabel>
+          <FormLabel>
+            🐭<span className='ml-2'>Password</span>
+          </FormLabel>
           <FormInput
             {...registerPassword(register)}
             type='password'
@@ -77,7 +82,7 @@ const LoginPage = () => {
           disabled={!isValid}
           onClick={() => setIsLoading(true)}>
           {isLoading && <CgSpinnerTwo className='loading-spinner' />}
-          Login
+          Login 🥷
         </FormButton>
       </form>
     </div>

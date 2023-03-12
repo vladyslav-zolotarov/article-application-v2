@@ -8,7 +8,7 @@ export interface IUser {
   updatedAt: string;
 }
 
-export interface IPost {
+export interface IArticle {
   _id: string;
   title: string;
   text: string;
@@ -20,22 +20,8 @@ export interface IPost {
   tags: Array<string>;
 }
 
-export interface ILoginUser {
-  email: Pick<IUser, 'email'>;
-  password: IUser['passwordHash'];
-  token: string;
-}
-
-export interface IRegisterUser {
-  fullName: Pick<IUser, 'fullName'>;
-  email: Pick<IUser, 'email'>;
-  password: IUser['passwordHash'];
-  token: string;
-}
-
 export interface IRegisterForm {
   fullName?: Pick<IUser, 'fullName'>;
   email: Pick<IUser, 'email'>;
   password: IUser['passwordHash'];
-  token?: string;
 }

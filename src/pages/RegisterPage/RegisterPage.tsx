@@ -5,6 +5,8 @@ import request from 'axios';
 import { onRegister } from '../../api/endpoints';
 import { registerURL } from '../../api/fetcher';
 import { IRegisterForm } from '../../types/types';
+import { CgSpinnerTwo } from 'react-icons/cg';
+import { IoRocket } from 'react-icons/io5';
 import {
   FormButton,
   FormInput,
@@ -12,9 +14,8 @@ import {
   FormLabel,
   registerEmail,
   registerPassword,
+  registerFullName,
 } from '../../components/Form/index';
-import { CgSpinnerTwo } from 'react-icons/cg';
-import { registerFullName } from '../../components/Form/helper/registerFullName';
 
 const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -46,12 +47,15 @@ const RegisterPage = () => {
       <form
         className='py-9 max-w-sm mx-auto flex flex-col justify-center align-center'
         onSubmit={handleSubmit(onHandleSubmit)}>
-        <h1 className='mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white'>
-          Register page
+        <IoRocket className='w-16 h-16 mx-auto mb-8' />
+        <h1 className='mb-6 text-6xl font-extrabold text-gray-900 text-center'>
+          Register
         </h1>
 
         <div className='fullname_input pb-6 mb-2 relative'>
-          <FormLabel>Fullname</FormLabel>
+          <FormLabel>
+            👨‍💼<span className='ml-2'>Fullname</span>
+          </FormLabel>
           <FormInput
             {...registerFullName(register)}
             type='text'
@@ -62,7 +66,9 @@ const RegisterPage = () => {
         </div>
 
         <div className='email_input pb-6 mb-2 relative'>
-          <FormLabel>Email</FormLabel>
+          <FormLabel>
+            📧 <span className='ml-2'>Email</span>
+          </FormLabel>
           <FormInput
             {...registerEmail(register)}
             type='email'
@@ -73,7 +79,9 @@ const RegisterPage = () => {
         </div>
 
         <div className='password_input pb-6 mb-2 relative'>
-          <FormLabel>Password</FormLabel>
+          <FormLabel>
+            🐭<span className='ml-2'>Password</span>
+          </FormLabel>
           <FormInput
             {...registerPassword(register)}
             type='password'
@@ -88,7 +96,7 @@ const RegisterPage = () => {
           disabled={!isValid}
           onClick={() => setIsLoading(true)}>
           {isLoading && <CgSpinnerTwo className='loading-spinner' />}
-          Register
+          Register 😗
         </FormButton>
       </form>
     </div>
