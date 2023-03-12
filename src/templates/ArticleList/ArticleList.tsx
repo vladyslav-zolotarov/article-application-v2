@@ -3,8 +3,11 @@ import { fetcher } from '../../api/fetcher';
 import { IArticle } from '../../types/types';
 import Article from '../Article/Article';
 import useSWR from 'swr';
+import { useLocation } from 'react-router-dom';
+import MyArticle from '../MyArticle/MyArticle';
 
 const ArticleList = () => {
+  const location = useLocation();
   const { data, error, isLoading } = useSWR<IArticle[]>(
     `${getArticlesURL}`,
     fetcher
@@ -12,12 +15,21 @@ const ArticleList = () => {
 
   const ArticleListSkeleton = (text: string) => {
     return (
-      <div className='articles --skeleton grid grid-cols-2 gap-6'>
+      <div
+        className={
+          location.pathname === '/posts/my'
+            ? 'articles grid grid-cols gap-6'
+            : 'articles --skeleton grid grid-cols-2 gap-6'
+        }>
         <div className='loading-wrapper'>
           <h2 className='loading-text'>{text}</h2>
         </div>
         {[...Array(4)].map((item, key) => {
-          return <Article key={key} />;
+          return location.pathname === '/posts/my' ? (
+            <MyArticle key={key} />
+          ) : (
+            <Article key={key} />
+          );
         })}
       </div>
     );
@@ -32,14 +44,26 @@ const ArticleList = () => {
   }
 
   return (
-    <div className='articles grid grid-cols-2 gap-6'>
+    <div
+      className={
+        location.pathname === '/posts/my'
+          ? 'articles grid grid-cols gap-6'
+          : 'articles grid grid-cols-2 gap-6'
+      }>
       {data &&
-        data.map(article => (
-          <Article
-            key={article.title}
-            article={article}
-          />
-        ))}
+        data.map(article =>
+          location.pathname === '/posts/my' ? (
+            <MyArticle
+              key={article.title}
+              article={article}
+            />
+          ) : (
+            <Article
+              key={article.title}
+              article={article}
+            />
+          )
+        )}
     </div>
   );
 };

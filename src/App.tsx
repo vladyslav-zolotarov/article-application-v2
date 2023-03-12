@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import MyArticleListPage from './pages/MyArticleListPage/MyArticleListPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import Aside from './templates/Aside/Aside';
 
@@ -55,7 +56,7 @@ function App() {
 
             <Route
               path={'/posts/my'}
-              // element={<MyArticlesListPage />}
+              element={<MyArticleListPage />}
             />
             <Route
               path={'/post/create'}

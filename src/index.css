@@ -26,6 +26,10 @@ aside {
 }
 /* aside end */
 
+.article-btn {
+  @apply h-8 w-8 flex items-center justify-center bg-blue-900 border-blue-900 text-blue-100 border rounded-lg shadow hover:bg-blue-800 focus:outline-none focus:border-blue-500;
+}
+
 /* loader */
 @keyframes spinner {
   0% {

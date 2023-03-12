@@ -1,11 +1,11 @@
 import ArticleList from '../../templates/ArticleList/ArticleList';
 
-const HomePage = () => {
+const MyArticleListPage = () => {
   return (
-    <div className='home-page'>
+    <div className='my-article-page'>
       <ArticleList />
     </div>
   );
 };
 
-export default HomePage;
+export default MyArticleListPage;
