@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* loading / error */
 .loading-wrapper {
   @apply absolute left-0 top-0 bottom-0 w-full flex justify-center items-center bg-gray-600 opacity-30;
 }
@@ -9,7 +10,23 @@
 .loading-text {
   @apply text-white text-4xl font-semibold tracking-wider;
 }
+/* loading / error end */
 
+/* aside */
+aside {
+  height: calc(100vh - 3.5rem);
+}
+
+.navbar-link {
+  @apply flex items-center p-4 mb-2 text-base;
+}
+
+.navbar-link.active {
+  @apply border rounded-lg shadow bg-blue-900 border-blue-900 text-blue-100;
+}
+/* aside end */
+
+/* loader */
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
@@ -22,3 +39,4 @@
   margin-right: 10px;
   animation: spinner 1.5s linear infinite;
 }
+/* loader end */

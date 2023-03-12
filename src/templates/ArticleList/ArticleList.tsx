@@ -10,30 +10,25 @@ const ArticleList = () => {
     fetcher
   );
 
-  if (isLoading) {
+  const ArticleListSkeleton = (text: string) => {
     return (
       <div className='articles --skeleton grid grid-cols-2 gap-6'>
         <div className='loading-wrapper'>
-          <h2 className='loading-text'>Loading ...</h2>
+          <h2 className='loading-text'>{text}</h2>
         </div>
         {[...Array(4)].map((item, key) => {
           return <Article key={key} />;
         })}
       </div>
     );
+  };
+
+  if (isLoading) {
+    return ArticleListSkeleton('Loading...');
   }
 
   if (error) {
-    return (
-      <div className='articles --skeleton grid grid-cols-2 gap-6'>
-        {/* <div className='loading-wrapper'>
-          <h2 className='loading-text'>Error</h2>
-        </div> */}
-        {[...Array(4)].map((item, key) => {
-          return <Article key={key} />;
-        })}
-      </div>
-    );
+    return ArticleListSkeleton('Error');
   }
 
   return (

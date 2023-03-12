@@ -24,15 +24,18 @@ const Article = ({ article }: ArticleProps) => {
       <ArticleTitle article={article} />
 
       <ArticleText article={article} />
-      <div className='flex justify-between'>
+      <div className='flex justify-between flex-wrap'>
         <ArticleTags article={article} />
 
         <div className='flex justify-end'>
           <ArticleDate
-            className='mr-5'
+            className='mt-2 mr-5'
             article={article}
           />
-          <ArticleViewCount article={article} />
+          <ArticleViewCount
+            className='mt-2'
+            article={article}
+          />
         </div>
       </div>
     </div>

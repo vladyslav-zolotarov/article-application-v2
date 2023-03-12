@@ -16,6 +16,6 @@ export const ArticleDate = (props: ArticleDateProps) => {
       {format(new Date(`${article?.createdAt}`), 'dd MMMM yyyy')}
     </span>
   ) : (
-    <span className='article-date --skeleton block mr-4 h-4 rounded-full w-40 bg-gray-200' />
+    <span className='article-date --skeleton block mt-2 mr-4 h-4 rounded-full w-40 bg-gray-200' />
   );
 };

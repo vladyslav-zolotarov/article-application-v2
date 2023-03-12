@@ -16,6 +16,6 @@ export const ArticleViewCount = (props: ArticleViewCountProps) => {
       {article.viewsCount}
     </span>
   ) : (
-    <span className='article-view-count --skeleton block h-4 rounded-full w-14 bg-gray-200'></span>
+    <span className='article-view-count --skeleton mt-2 block h-4 rounded-full w-14 bg-gray-200'></span>
   );
 };
