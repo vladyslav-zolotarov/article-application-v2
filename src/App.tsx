@@ -22,7 +22,7 @@ function App() {
   }, [location]);
 
   return (
-    <div className='App'>
+    <div className='App flex flex-col min-h-screen'>
       <div className='flex-1 text-slate-900 dark:text-slate-300 bg-gray-100 relative'>
         <Aside contentWidthFullScreen={contentWidthFullScreen} />
         <div

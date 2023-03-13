@@ -24,7 +24,7 @@ const ArticleList = () => {
         <div className='loading-wrapper'>
           <h2 className='loading-text'>{text}</h2>
         </div>
-        {[...Array(4)].map((item, key) => {
+        {[...Array(6)].map((item, key) => {
           return location.pathname === '/posts/my' ? (
             <MyArticle key={key} />
           ) : (

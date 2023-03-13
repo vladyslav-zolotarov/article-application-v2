@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import AsideNavigation from '../../components/Aside/AsideNavigation';
-import { IoRocket, IoHome, IoDocumentText } from 'react-icons/io5';
+import { IoRocket, IoHome, IoDocumentText, IoCreate } from 'react-icons/io5';
 import { twMerge } from 'tailwind-merge';
 
 interface AsideProps extends React.ComponentPropsWithoutRef<'aside'> {
@@ -52,7 +52,7 @@ const Aside = (props: AsideProps) => {
             className={({ isActive }) =>
               isActive ? 'navbar-link active' : 'navbar-link'
             }>
-            <IoHome className='h-4 mr-5' />
+            <IoCreate className='h-4 mr-5' />
             <span>Create article</span>
           </NavLink>
         </li>

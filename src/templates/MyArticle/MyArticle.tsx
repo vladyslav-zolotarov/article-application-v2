@@ -16,7 +16,7 @@ interface MyArticleProps {
 const MyArticle = ({ article }: MyArticleProps) => {
   return (
     <div className='article__item flex p-5 border rounded-lg shadow bg-white border-gray-200'>
-      <div className='flex w-5/6'>
+      <div className='flex w-full'>
         <ArticleImage
           height='h-16'
           width='w-16'
@@ -24,7 +24,7 @@ const MyArticle = ({ article }: MyArticleProps) => {
           article={article}
         />
 
-        <div>
+        <div className='w-full'>
           <ArticleTitle
             className='mb-2'
             article={article}
@@ -42,7 +42,7 @@ const MyArticle = ({ article }: MyArticleProps) => {
           </div>
         </div>
       </div>
-      <ul className='article-settings flex items-center justify-center w-2/12'>
+      <ul className='article-settings flex items-center justify-end w-fit ml-5'>
         <li>
           <button className='article-btn mx-2'>
             <FaPencilAlt />
