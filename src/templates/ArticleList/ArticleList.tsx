@@ -2,16 +2,33 @@ import { getArticlesURL } from '../../api/fetcher';
 import { fetcher } from '../../api/fetcher';
 import { IArticle } from '../../types/types';
 import Article from '../Article/Article';
-import useSWR from 'swr';
+import useSWRMutation from 'swr';
 import { useLocation } from 'react-router-dom';
 import MyArticle from '../MyArticle/MyArticle';
+import { useArticleStore, useUserStore } from '../../utils/store';
 
 const ArticleList = () => {
   const location = useLocation();
-  const { data, error, isLoading } = useSWR<IArticle[]>(
+  const { data, error, isLoading } = useSWRMutation<IArticle[]>(
     `${getArticlesURL}`,
-    fetcher
+    fetcher,
+    {
+      onSuccess(data) {
+        if (userId && data) {
+          setMyArticleList(data, userId);
+        }
+      },
+    }
   );
+
+  const { myArticleList, setMyArticleList } = useArticleStore(state => ({
+    myArticleList: state.myArticleList,
+    setMyArticleList: state.setMyArticleList,
+  }));
+
+  const { userId } = useUserStore(state => ({
+    userId: state.userId,
+  }));
 
   const ArticleListSkeleton = (text: string) => {
     return (
@@ -43,6 +60,31 @@ const ArticleList = () => {
     return ArticleListSkeleton('Error');
   }
 
+  const content = () => {
+    if (location.pathname === '/posts/my') {
+      if (myArticleList.length) {
+        return myArticleList.map(article => (
+          <MyArticle
+            key={article.title}
+            article={article}
+          />
+        ));
+      }
+
+      return <h1>Your list is empty</h1>;
+    }
+    if (data) {
+      return data.map(article => (
+        <Article
+          key={article.title}
+          article={article}
+        />
+      ));
+    }
+
+    return <h1>Here is empty</h1>;
+  };
+
   return (
     <div
       className={
@@ -50,20 +92,7 @@ const ArticleList = () => {
           ? 'articles grid grid-cols gap-6'
           : 'articles grid grid-cols-2 gap-6'
       }>
-      {data &&
-        data.map(article =>
-          location.pathname === '/posts/my' ? (
-            <MyArticle
-              key={article.title}
-              article={article}
-            />
-          ) : (
-            <Article
-              key={article.title}
-              article={article}
-            />
-          )
-        )}
+      {content()}
     </div>
   );
 };

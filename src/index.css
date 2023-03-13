@@ -4,7 +4,7 @@
 
 /* loading / error */
 .loading-wrapper {
-  @apply absolute left-0 top-0 bottom-0 w-full flex justify-center items-center bg-gray-600 opacity-30;
+  @apply fixed left-0 top-0 h-screen w-full flex justify-center items-center bg-gray-600 opacity-30;
 }
 
 .loading-text {

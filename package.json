@@ -20,7 +20,8 @@
     "react-hook-form": "^7.43.5",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.8.2",
-    "swr": "^2.1.0"
+    "swr": "^2.1.0",
+    "zustand": "^4.3.6"
   },
   "devDependencies": {
     "@pnpm/eslint-config": "^1.0.1",
