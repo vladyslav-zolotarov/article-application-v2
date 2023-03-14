@@ -1,17 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
-import {
-  IoRocket,
-  IoHome,
-  IoDocumentText,
-  IoCreate,
-  IoExitOutline,
-} from 'react-icons/io5';
+import { IoRocket, IoHome, IoDocumentText, IoCreate } from 'react-icons/io5';
 import { twMerge } from 'tailwind-merge';
 import { AsideNavigation, AsideUserGroup } from '../../components/Aside';
-import { UserAvatar, UserCreatedAt, UserFullName } from '../../components/User';
-import { useAppStore } from '../../utils/store';
 
 interface AsideProps extends React.ComponentPropsWithoutRef<'aside'> {
   contentWidthFullScreen: boolean;
@@ -23,10 +14,6 @@ const Aside = (props: AsideProps) => {
   if (contentWidthFullScreen) {
     return null;
   }
-
-  const { deleteToken } = useAppStore(state => ({
-    deleteToken: state.deleteToken,
-  }));
 
   return (
     <aside
@@ -71,26 +58,7 @@ const Aside = (props: AsideProps) => {
         </li>
       </AsideNavigation>
 
-      <AsideUserGroup className='flex items-center mt-auto px-5 py-5 rounded-b-lg border border-blue-900 bg-blue-900 text-blue-100'>
-        <UserAvatar
-          height='h-10'
-          width='w-10'
-          className='mr-2'
-        />
-        <div className='flex flex-col'>
-          <UserFullName className='' />
-          <UserCreatedAt className='text-xs'>Joined in</UserCreatedAt>
-        </div>
-        <button
-          className='ml-5'
-          onClick={() => {
-            setTimeout(() => {
-              deleteToken();
-            }, 500);
-          }}>
-          <IoExitOutline className='h-6 w-6' />
-        </button>
-      </AsideUserGroup>
+      <AsideUserGroup className='flex items-center mt-auto px-5 py-5 rounded-b-lg border border-blue-900 bg-blue-900 text-blue-100' />
     </aside>
   );
 };

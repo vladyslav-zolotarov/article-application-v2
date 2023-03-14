@@ -5,7 +5,7 @@ import Article from '../Article/Article';
 import useSWRMutation from 'swr';
 import { useLocation } from 'react-router-dom';
 import MyArticle from '../MyArticle/MyArticle';
-import { useArticleStore, useUserStore } from '../../utils/store';
+import { useAppStore, useArticleStore } from '../../utils/store';
 
 const ArticleList = () => {
   const location = useLocation();
@@ -26,7 +26,7 @@ const ArticleList = () => {
     setMyArticleList: state.setMyArticleList,
   }));
 
-  const { userId } = useUserStore(state => ({
+  const { userId } = useAppStore(state => ({
     userId: state.userId,
   }));
 

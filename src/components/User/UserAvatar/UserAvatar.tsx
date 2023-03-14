@@ -1,19 +1,15 @@
 import React from 'react';
 import { RiUser3Fill } from 'react-icons/ri';
 import { twMerge } from 'tailwind-merge';
-import { useUserStore } from '../../../utils/store';
 
 interface UserAvatarProps extends React.ComponentPropsWithoutRef<'img'> {
   height?: string;
   width?: string;
+  userAvatarUrl?: string;
 }
 
 export const UserAvatar = (props: UserAvatarProps) => {
-  const { className, height, width } = props;
-
-  const { userAvatarUrl } = useUserStore(state => ({
-    userAvatarUrl: state.userAvatarUrl,
-  }));
+  const { className, height, width, userAvatarUrl } = props;
 
   return (
     <div className={twMerge('user-avatar', className, height, width)}>

@@ -16,7 +16,7 @@ import {
   registerPassword,
   registerFullName,
 } from '../../components/Form/index';
-import { useAppStore, useUserStore } from '../../utils/store';
+import { useAppStore } from '../../utils/store';
 
 const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,10 +25,6 @@ const RegisterPage = () => {
     register,
     formState: { errors, isValid },
   } = useForm<IRegisterForm>({ mode: 'onChange' });
-
-  const { setUser } = useUserStore(state => ({
-    setUser: state.setUser,
-  }));
 
   const { setToken } = useAppStore(state => ({
     setToken: state.setToken,
@@ -40,8 +36,7 @@ const RegisterPage = () => {
     try {
       const data = await trigger(formData);
       if ('token' in data) {
-        setToken(data.token);
-        setUser(data._id, data.fullName, data.createdAt, data.avatarUrl);
+        setToken(data.token, data._id);
       }
     } catch (err) {
       if (request.isAxiosError(err) && err.response) {

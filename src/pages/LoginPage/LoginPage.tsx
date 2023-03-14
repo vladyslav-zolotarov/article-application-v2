@@ -15,19 +15,16 @@ import {
   registerEmail,
   registerPassword,
 } from '../../components/Form/index';
-import { useAppStore, useUserStore } from '../../utils/store';
+import { useAppStore } from '../../utils/store';
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [resposeErrorMessage, setResposeErrorMessage] = useState('');
   const {
     handleSubmit,
     register,
     formState: { errors, isValid },
   } = useForm<IRegisterForm>({ mode: 'onChange' });
-
-  const { setUser } = useUserStore(state => ({
-    setUser: state.setUser,
-  }));
 
   const { setToken } = useAppStore(state => ({
     setToken: state.setToken,
@@ -39,12 +36,11 @@ const LoginPage = () => {
     try {
       const data = await trigger(formData);
       if ('token' in data) {
-        setToken(data.token);
-        setUser(data._id, data.fullName, data.createdAt, data.avatarUrl);
+        setToken(data.token, data._id);
       }
     } catch (err) {
       if (request.isAxiosError(err) && err.response) {
-        console.log('err', err.response.data.message);
+        setResposeErrorMessage(err.response.data.message);
       }
     } finally {
       setIsLoading(false);
@@ -88,12 +84,19 @@ const LoginPage = () => {
         </div>
 
         <FormButton
+          className='mb-5'
           type='submit'
           disabled={!isValid}
           onClick={() => setIsLoading(true)}>
           {isLoading && <CgSpinnerTwo className='loading-spinner' />}
           Login 🥷
         </FormButton>
+
+        {resposeErrorMessage && (
+          <div className='relative mt-5 flex justify-center'>
+            <FormErrorMessage>{resposeErrorMessage}</FormErrorMessage>
+          </div>
+        )}
       </form>
     </div>
   );

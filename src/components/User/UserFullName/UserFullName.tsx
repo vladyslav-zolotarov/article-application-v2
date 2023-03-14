@@ -1,21 +1,18 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
-import { useUserStore } from '../../../utils/store';
 
-interface UserFullNameProps extends React.ComponentPropsWithoutRef<'span'> {}
+interface UserFullNameProps extends React.ComponentPropsWithoutRef<'span'> {
+  userFullName?: string;
+}
 
 export const UserFullName = (props: UserFullNameProps) => {
-  const { className, children } = props;
-
-  const { userFullName } = useUserStore(state => ({
-    userFullName: state.userFullName,
-  }));
+  const { className, children, userFullName } = props;
 
   return userFullName ? (
     <span className={twMerge('user-fullname block font-bold', className)}>
       {children} {userFullName}
     </span>
   ) : (
-    <span className='user-fullname --skeleton' />
+    <span className='user-fullname --skeleton block bg-gray-300 mb-1 rounded-lg h-4 w-1/2' />
   );
 };

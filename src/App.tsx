@@ -88,7 +88,16 @@ function App() {
 
             <Route
               path={'/posts/my'}
-              element={<MyArticleListPage />}
+              element={
+                !token ? (
+                  <Navigate
+                    to='/auth/login'
+                    replace
+                  />
+                ) : (
+                  <MyArticleListPage />
+                )
+              }
             />
             <Route
               path={'/post/create'}
