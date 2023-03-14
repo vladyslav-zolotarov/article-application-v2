@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MyArticleListPage from './pages/MyArticleListPage/MyArticleListPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import Aside from './templates/Aside/Aside';
+import { useAppStore } from './utils/store';
 
 function App() {
   const [contentWidthFullScreen, setContentWidthFullScreen] = useState(false);
   const location = useLocation();
+
+  const { token } = useAppStore(state => ({
+    token: state.token,
+  }));
 
   useEffect(() => {
     if (
@@ -34,15 +39,42 @@ function App() {
           <Routes>
             <Route
               path='/'
-              element={<HomePage />}
+              element={
+                !token ? (
+                  <Navigate
+                    to='/auth/login'
+                    replace
+                  />
+                ) : (
+                  <HomePage />
+                )
+              }
             />
             <Route
               path={'/auth/register'}
-              element={<RegisterPage />}
+              element={
+                token ? (
+                  <Navigate
+                    to='/'
+                    replace
+                  />
+                ) : (
+                  <RegisterPage />
+                )
+              }
             />
             <Route
               path={'/auth/login'}
-              element={<LoginPage />}
+              element={
+                token ? (
+                  <Navigate
+                    to='/'
+                    replace
+                  />
+                ) : (
+                  <LoginPage />
+                )
+              }
             />
 
             <Route

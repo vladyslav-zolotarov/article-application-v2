@@ -16,7 +16,7 @@ import {
   registerPassword,
   registerFullName,
 } from '../../components/Form/index';
-import { useUserStore } from '../../utils/store';
+import { useAppStore, useUserStore } from '../../utils/store';
 
 const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,14 +30,18 @@ const RegisterPage = () => {
     setUser: state.setUser,
   }));
 
+  const { setToken } = useAppStore(state => ({
+    setToken: state.setToken,
+  }));
+
   const { trigger } = useSWRMutation(registerURL, onRegister);
 
   const onHandleSubmit: SubmitHandler<IRegisterForm> = async formData => {
     try {
       const data = await trigger(formData);
       if ('token' in data) {
-        document.cookie = `token=${data.token}`;
-        setUser(data._id, data.fullName, data.createdAt);
+        setToken(data.token);
+        setUser(data._id, data.fullName, data.createdAt, data.avatarUrl);
       }
     } catch (err) {
       if (request.isAxiosError(err) && err.response) {

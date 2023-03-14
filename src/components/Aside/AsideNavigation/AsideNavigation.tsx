@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 interface AsideNavigationProps
   extends React.ComponentPropsWithoutRef<'aside'> {}
 
-const AsideNavigation = (props: AsideNavigationProps) => {
+export const AsideNavigation = (props: AsideNavigationProps) => {
   const { className, children } = props;
 
   return (
@@ -13,5 +13,3 @@ const AsideNavigation = (props: AsideNavigationProps) => {
     </nav>
   );
 };
-
-export default AsideNavigation;
