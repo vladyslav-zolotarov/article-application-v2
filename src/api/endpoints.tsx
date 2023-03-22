@@ -14,18 +14,18 @@ export const onRegister = async (url: string, { arg }: { arg: {} }) => {
   return await response;
 };
 
-export const getMe = async (url: string, { arg }: { arg: string }) => {
-  const response = axios
-    .get(url, {
-      headers: {
-        Authorization: `Bearer ${arg}`,
-      },
-    })
-    .then(response => {
-      return response.data;
-    });
-  return await response;
-};
+// export const getMe = async (url: string, { arg }: { arg: string }) => {
+//   const response = axios
+//     .get(url, {
+//       headers: {
+//         Authorization: `Bearer ${arg}`,
+//       },
+//     })
+//     .then(response => {
+//       return response.data;
+//     });
+//   return await response;
+// };
 
 // headers: {
 //   Authorization: `Bearer ${arg}`

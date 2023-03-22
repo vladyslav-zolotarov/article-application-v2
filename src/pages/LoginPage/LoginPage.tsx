@@ -1,9 +1,4 @@
-import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import request from 'axios';
-import useSWRMutation from 'swr/mutation';
-import { onLogin } from '../../api/endpoints';
-import { loginURL } from '../../api/fetcher';
 import { IRegisterForm } from '../../types/types';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { IoRocket } from 'react-icons/io5';
@@ -15,36 +10,19 @@ import {
   registerEmail,
   registerPassword,
 } from '../../components/Form/index';
-import { useAppStore } from '../../utils/store';
+import { useOnLogin } from '../../api/endpoints/useOnLogin';
 
 const LoginPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [resposeErrorMessage, setResposeErrorMessage] = useState('');
   const {
     handleSubmit,
     register,
     formState: { errors, isValid },
   } = useForm<IRegisterForm>({ mode: 'onChange' });
 
-  const { setToken } = useAppStore(state => ({
-    setToken: state.setToken,
-  }));
-
-  const { trigger } = useSWRMutation(loginURL, onLogin);
+  const { isError, isLoading, mutate } = useOnLogin();
 
   const onHandleSubmit: SubmitHandler<IRegisterForm> = async formData => {
-    try {
-      const data = await trigger(formData);
-      if ('token' in data) {
-        setToken(data.token, data._id);
-      }
-    } catch (err) {
-      if (request.isAxiosError(err) && err.response) {
-        setResposeErrorMessage(err.response.data.message);
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    mutate(formData);
   };
 
   return (
@@ -86,15 +64,14 @@ const LoginPage = () => {
         <FormButton
           className='mb-5'
           type='submit'
-          disabled={!isValid}
-          onClick={() => setIsLoading(true)}>
+          disabled={!isValid}>
           {isLoading && <CgSpinnerTwo className='loading-spinner' />}
           Login 🥷
         </FormButton>
 
-        {resposeErrorMessage && (
+        {isError && (
           <div className='relative mt-5 flex justify-center'>
-            <FormErrorMessage>{resposeErrorMessage}</FormErrorMessage>
+            <FormErrorMessage>{isError}</FormErrorMessage>
           </div>
         )}
       </form>

@@ -1,43 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import useSWRMutation from 'swr/mutation';
-import { getMe } from '../../../api/endpoints';
-import { getMeURL } from '../../../api/fetcher';
+import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useAppStore } from '../../../utils/store';
 import { IoExitOutline } from 'react-icons/io5';
 import { UserAvatar, UserCreatedAt, UserFullName } from '../../User';
-import { IUser } from '../../../types/types';
+import { useGetMe } from '../../../api/endpoints/useGetMe';
 
 interface AsideUserGroupProps extends React.ComponentPropsWithoutRef<'div'> {}
 
 export const AsideUserGroup = (props: AsideUserGroupProps) => {
   const { className, children } = props;
-  const { trigger } = useSWRMutation(getMeURL, getMe, {});
-  const [data, setData] = useState<IUser>();
-
   const { token, userId, setToken } = useAppStore(state => ({
     token: state.token,
     userId: state.userId,
     setToken: state.setToken,
   }));
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await trigger(token);
-        console.log(response);
-        if (response) {
-          setData(response);
-        }
-      } catch (err) {
-        return null;
-      }
-    })();
-  }, []);
+  const { data, isError } = useGetMe(token);
+
+  if (isError) {
+    return isError;
+  }
 
   const content = () => {
     if (token && userId) {
-      console.log(data);
       return (
         <>
           <UserAvatar

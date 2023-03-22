@@ -1,34 +1,21 @@
-import { getArticlesURL } from '../../api/fetcher';
-import { fetcher } from '../../api/fetcher';
-import { IArticle } from '../../types/types';
 import Article from '../Article/Article';
-import useSWRMutation from 'swr';
-import { useLocation } from 'react-router-dom';
 import MyArticle from '../MyArticle/MyArticle';
+import { useLocation } from 'react-router-dom';
 import { useAppStore, useArticleStore } from '../../utils/store';
+import { useGetPosts } from '../../api/endpoints/useGetPosts';
 
 const ArticleList = () => {
   const location = useLocation();
-  const { data, error, isLoading } = useSWRMutation<IArticle[]>(
-    `${getArticlesURL}`,
-    fetcher,
-    {
-      onSuccess(data) {
-        if (userId && data) {
-          setMyArticleList(data, userId);
-        }
-      },
-    }
-  );
 
-  const { myArticleList, setMyArticleList } = useArticleStore(state => ({
+  const { myArticleList } = useArticleStore(state => ({
     myArticleList: state.myArticleList,
-    setMyArticleList: state.setMyArticleList,
   }));
 
   const { userId } = useAppStore(state => ({
     userId: state.userId,
   }));
+
+  const { data, isError, isLoading } = useGetPosts(userId);
 
   const ArticleListSkeleton = (text: string) => {
     return (
@@ -56,7 +43,7 @@ const ArticleList = () => {
     return ArticleListSkeleton('Loading...');
   }
 
-  if (error) {
+  if (isError) {
     return ArticleListSkeleton('Error');
   }
 
