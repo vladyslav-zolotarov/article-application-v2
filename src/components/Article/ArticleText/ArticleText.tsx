@@ -11,10 +11,7 @@ export const ArticleText = (props: ArticleTextProps) => {
 
   return article ? (
     <span
-      className={twMerge(
-        'article-text block mb-6 text-gray-700 line-clamp-2',
-        className
-      )}>
+      className={twMerge('article-text block mb-6 text-gray-700', className)}>
       {children} {article.text}
     </span>
   ) : (

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
+import ArticlePage from './pages/ArticlePage/ArticlePage';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MyArticleListPage from './pages/MyArticleListPage/MyArticleListPage';
@@ -83,7 +84,16 @@ function App() {
             />
             <Route
               path={'/post/:id'}
-              // element={<ArticlePage />}
+              element={
+                token ? (
+                  <ArticlePage />
+                ) : (
+                  <Navigate
+                    to='/'
+                    replace
+                  />
+                )
+              }
             />
 
             <Route

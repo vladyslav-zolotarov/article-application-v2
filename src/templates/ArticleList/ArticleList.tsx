@@ -2,7 +2,7 @@ import Article from '../Article/Article';
 import MyArticle from '../MyArticle/MyArticle';
 import { useLocation } from 'react-router-dom';
 import { useAppStore, useArticleStore } from '../../utils/store';
-import { useGetPosts } from '../../api/endpoints/useGetPosts';
+import { useGetArticles } from '../../api/endpoints/useGetArticles';
 
 const ArticleList = () => {
   const location = useLocation();
@@ -15,7 +15,7 @@ const ArticleList = () => {
     userId: state.userId,
   }));
 
-  const { data, isError, isLoading } = useGetPosts(userId);
+  const { data, isError, isLoading } = useGetArticles(userId);
 
   const ArticleListSkeleton = (text: string) => {
     return (

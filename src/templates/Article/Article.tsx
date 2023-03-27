@@ -23,7 +23,10 @@ const Article = ({ article }: ArticleProps) => {
       />
       <ArticleTitle article={article} />
 
-      <ArticleText article={article} />
+      <ArticleText
+        article={article}
+        className='line-clamp-2'
+      />
       <div className='flex justify-between flex-wrap'>
         <ArticleTags
           className='mt-2'
