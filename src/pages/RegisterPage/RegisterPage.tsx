@@ -78,7 +78,7 @@ const RegisterPage = () => {
         <FormButton
           type='submit'
           disabled={!isValid}>
-          {isLoading && <CgSpinnerTwo className='loading-spinner' />}
+          {isLoading && <CgSpinnerTwo className='loading-spinner mr-2' />}
           Register 😗
         </FormButton>
 

@@ -65,7 +65,7 @@ const LoginPage = () => {
           className='mb-5'
           type='submit'
           disabled={!isValid}>
-          {isLoading && <CgSpinnerTwo className='loading-spinner' />}
+          {isLoading && <CgSpinnerTwo className='loading-spinner mr-2' />}
           Login 🥷
         </FormButton>
 

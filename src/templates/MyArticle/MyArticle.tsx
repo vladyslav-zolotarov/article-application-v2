@@ -2,18 +2,42 @@ import {
   ArticleDate,
   ArticleImage,
   ArticleTags,
-  ArticleText,
   ArticleTitle,
   ArticleViewCount,
 } from '../../components/Article';
 import { IArticle } from '../../types/types';
 import { FaPencilAlt, FaTrash } from 'react-icons/fa';
+import { useRemoveArticle } from '../../api/endpoints/useRemoveArticle';
+import { MouseEvent, useState } from 'react';
+import { CgSpinnerTwo } from 'react-icons/cg';
+import { useArticleStore, useAppStore } from '../../utils/store';
 
 interface MyArticleProps {
   article?: IArticle;
 }
 
 const MyArticle = ({ article }: MyArticleProps) => {
+  const { resolve, rejected, pending, mutate } = useRemoveArticle();
+
+  const { userId } = useAppStore(state => ({
+    userId: state.userId,
+  }));
+
+  const { myArticleList, setMyArticleList } = useArticleStore(state => ({
+    myArticleList: state.myArticleList,
+    setMyArticleList: state.setMyArticleList,
+  }));
+
+  const handleRemoveArticle = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    mutate(article?._id);
+
+    setMyArticleList(
+      myArticleList.filter(art => art._id !== article?._id),
+      userId
+    );
+  };
+
   return (
     <div className='article__item flex p-5 border rounded-lg shadow bg-white border-gray-200'>
       <div className='flex w-full'>
@@ -49,8 +73,14 @@ const MyArticle = ({ article }: MyArticleProps) => {
           </button>
         </li>
         <li>
-          <button className='article-btn mx-2'>
-            <FaTrash />
+          <button
+            className='article-btn mx-2'
+            onClick={handleRemoveArticle}>
+            {pending ? (
+              <CgSpinnerTwo className='loading-spinner' />
+            ) : (
+              <FaTrash />
+            )}
           </button>
         </li>
       </ul>

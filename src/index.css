@@ -40,7 +40,6 @@ aside {
   }
 }
 .loading-spinner {
-  margin-right: 10px;
   animation: spinner 1.5s linear infinite;
 }
 /* loader end */

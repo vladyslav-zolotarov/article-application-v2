@@ -4,3 +4,4 @@ export * from './ArticleTitle/ArticleTitle';
 export * from './ArticleText/ArticleText';
 export * from './ArticleTags/ArticleTags';
 export * from './ArticleViewCount/ArticleViewCount';
+export * from './ArticleUserGroup/ArticleUserGroup';

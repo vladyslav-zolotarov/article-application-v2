@@ -28,7 +28,6 @@ export const AsideUserGroup = (props: AsideUserGroupProps) => {
           <UserAvatar
             height='h-10'
             width='w-1/6'
-            className='mr-2'
             userAvatarUrl={data?.avatarUrl}
           />
           <div className='flex flex-col w-4/6'>
@@ -51,12 +50,12 @@ export const AsideUserGroup = (props: AsideUserGroupProps) => {
       );
     }
 
-    if (!userId && token !== '') {
-      //get me
-    }
-
     return null;
   };
 
-  return <div className={twMerge('aside-user', className)}>{content()}</div>;
+  return (
+    <div className={twMerge('aside-user space-x-2', className)}>
+      {content()}
+    </div>
+  );
 };

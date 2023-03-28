@@ -5,6 +5,7 @@ import {
   ArticleText,
   ArticleTitle,
   ArticleViewCount,
+  ArticleUserGroup,
 } from '../../components/Article';
 import { IArticle } from '../../types/types';
 
@@ -15,6 +16,10 @@ interface ArticleProps {
 const Article = ({ article }: ArticleProps) => {
   return (
     <div className='article__item p-5 border rounded-lg shadow bg-white border-gray-200'>
+      <ArticleUserGroup
+        className='mb-2'
+        user={article?.user}
+      />
       <ArticleImage
         height='h-52'
         width='w-full'
