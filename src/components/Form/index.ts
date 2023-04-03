@@ -5,3 +5,6 @@ export * from './FormErrorMessage/FormErrorMessage';
 export * from './formRegisters/registerEmail';
 export * from './formRegisters/registerFullName';
 export * from './formRegisters/registerPassword';
+export * from './formRegisters/registerTitle';
+export * from './formRegisters/registerText';
+export * from './formRegisters/registerTags';

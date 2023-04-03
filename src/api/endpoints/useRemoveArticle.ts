@@ -15,7 +15,7 @@ export const useRemoveArticle = () => {
   const mutate = async (articleId?: string) => {
     try {
       setPending(true);
-      const response = await api.delete(`/posts1/${articleId}`, {
+      const response = await api.delete(`/posts/${articleId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

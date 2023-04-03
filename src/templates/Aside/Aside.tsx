@@ -48,7 +48,7 @@ const Aside = (props: AsideProps) => {
         </li>
         <li className='navbar-item'>
           <NavLink
-            to='/auth/register'
+            to='/post/create'
             className={({ isActive }) =>
               isActive ? 'navbar-link active' : 'navbar-link'
             }>

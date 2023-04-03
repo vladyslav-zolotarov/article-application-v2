@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+.modal-overlay {
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  display: block;
+  background: white;
+  min-width: 600px;
+  min-height: 200px;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+}
+
 /* loading / error */
 .loading-wrapper {
   @apply fixed left-0 top-0 h-screen w-full flex justify-center items-center bg-gray-600 opacity-30;
@@ -11,6 +32,11 @@
   @apply text-white text-4xl font-semibold tracking-wider;
 }
 /* loading / error end */
+
+.App {
+  max-width: 1920px;
+  margin: auto;
+}
 
 /* aside */
 aside {
@@ -39,6 +65,7 @@ aside {
     transform: rotate(360deg);
   }
 }
+
 .loading-spinner {
   animation: spinner 1.5s linear infinite;
 }

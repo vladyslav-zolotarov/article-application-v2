@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
+import { AddNewArticlePage } from './pages/AddNewArticlePage/AddNewArticlePage';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -31,12 +32,7 @@ function App() {
     <div className='App flex flex-col min-h-screen'>
       <div className='flex-1 text-slate-900 dark:text-slate-300 bg-gray-100 relative'>
         <Aside contentWidthFullScreen={contentWidthFullScreen} />
-        <div
-          className={
-            !contentWidthFullScreen
-              ? 'max-w-7xl mx-auto p-7 ml-80'
-              : 'max-w-7xl mx-auto p-7'
-          }>
+        <div className={!contentWidthFullScreen ? 'p-7 ml-80' : 'p-7'}>
           <Routes>
             <Route
               path='/'
@@ -111,7 +107,16 @@ function App() {
             />
             <Route
               path={'/post/create'}
-              // element={<NewArticlePage />}
+              element={
+                !token ? (
+                  <Navigate
+                    to='/auth/login'
+                    replace
+                  />
+                ) : (
+                  <AddNewArticlePage />
+                )
+              }
             />
             <Route
               path={'/post/edit/:id'}

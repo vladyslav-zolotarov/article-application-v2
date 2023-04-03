@@ -25,3 +25,10 @@ export interface IRegisterForm {
   email: Pick<IUser, 'email'>;
   password: IUser['passwordHash'];
 }
+
+export interface IArticleForm {
+  title: Pick<IArticle, 'title'>;
+  text: Pick<IArticle, 'text'>;
+  imageUrl?: Pick<IArticle, 'imageUrl'>;
+  tags: Pick<IArticle, 'tags'>;
+}
