@@ -14,6 +14,7 @@ import { useArticleStore, useAppStore } from '../../utils/store';
 import { Modal } from '../../components/Modal/Modal';
 import { useModal } from '../../components/Modal/useModal';
 import { ConfirmationModal } from '../ConfirmationModal/ConfirmationModal';
+import { Link } from 'react-router-dom';
 
 interface MyArticleProps {
   article?: IArticle;
@@ -78,11 +79,11 @@ const MyArticle = ({ article }: MyArticleProps) => {
           </div>
         </div>
         <ul className='article-settings flex items-center justify-end w-fit ml-5'>
-          <li>
+          <Link to={`/post/edit/${article?._id}`}>
             <button className='article-btn mx-2'>
               <FaPencilAlt />
             </button>
-          </li>
+          </Link>
           <li>
             <button
               className='article-btn mx-2'

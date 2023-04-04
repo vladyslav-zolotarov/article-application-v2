@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
-import { AddNewArticlePage } from './pages/AddNewArticlePage/AddNewArticlePage';
+import AddNewArticlePage from './pages/AddNewArticlePage/AddNewArticlePage';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
+import EditArticlePage from './pages/EditArticlePage/EditArticlePage';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MyArticleListPage from './pages/MyArticleListPage/MyArticleListPage';
@@ -120,7 +121,16 @@ function App() {
             />
             <Route
               path={'/post/edit/:id'}
-              // element={<EditArticlePage />}
+              element={
+                !token ? (
+                  <Navigate
+                    to='/auth/login'
+                    replace
+                  />
+                ) : (
+                  <EditArticlePage />
+                )
+              }
             />
           </Routes>
         </div>

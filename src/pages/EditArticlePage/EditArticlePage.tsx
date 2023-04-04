@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAddNewArticle } from '../../api/endpoints/useAddNewArticle';
 import { CgSpinnerTwo } from 'react-icons/cg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   FormButton,
   FormErrorMessage,
@@ -14,35 +13,45 @@ import {
   registerTitle,
 } from '../../components/Form';
 import { IArticleForm } from '../../types/types';
+import { useGetOneArticle } from '../../api/endpoints/useGetOneArticle';
+import { useUpdateArticle } from '../../api/endpoints/useUpdateArticle';
 
-const AddNewArticlePage = () => {
+const EditArticlePage = () => {
   let navigate = useNavigate();
+  const { id } = useParams();
+
+  const { data, isError, isLoading } = useGetOneArticle(id);
+  const { resolve, rejected, pending, mutate } = useUpdateArticle();
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors, isValid },
-  } = useForm<IArticleForm>({ mode: 'onChange' });
-
-  const { response, isLoading, isError, mutate } = useAddNewArticle();
-
-  if (isError) {
-    alert('ERROR');
-  }
+  } = useForm<IArticleForm>({
+    mode: 'onChange',
+  });
 
   useEffect(() => {
-    if (response) {
-      navigate(`/post/${response._id}`);
-    }
-  }, [response]);
+    if (Array.isArray(data?.tags)) {
+      reset({
+        title: data?.title,
+        text: data?.text,
+        tags: data?.tags.join(' '),
+      });
+    } else reset({ title: data?.title, text: data?.text, tags: data?.tags });
+  }, [data]);
 
   const onHandleSubmit: SubmitHandler<IArticleForm> = formData => {
-    mutate(formData);
+    if (data) {
+      mutate(data._id, formData);
+      navigate(-1);
+    }
   };
 
   return (
     <div className='add_new_article_page__container'>
       <h1 className='mb-6 text-6xl font-extrabold text-gray-900 text-center'>
-        Adding new article
+        Edit article
       </h1>
 
       <form onSubmit={handleSubmit(onHandleSubmit)}>
@@ -55,6 +64,7 @@ const AddNewArticlePage = () => {
             type='text'
             aria-describedby='helper-text-title'
             placeholder='Input title'
+            defaultValue={data && data.title}
           />
           <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
         </div>
@@ -65,9 +75,11 @@ const AddNewArticlePage = () => {
           </FormLabel>
           <FormTextArea
             {...registerText(register)}
+            className='h-28'
             type='text'
             aria-describedby='helper-text-text'
             placeholder='Input text'
+            defaultValue={data && data.text}
           />
           <FormErrorMessage>{errors.text?.message}</FormErrorMessage>
         </div>
@@ -81,6 +93,7 @@ const AddNewArticlePage = () => {
             type='text'
             aria-describedby='helper-text-tags'
             placeholder='Input tags'
+            defaultValue={data && data.tags}
           />
           <FormErrorMessage>{errors.tags?.message}</FormErrorMessage>
         </div>
@@ -88,10 +101,10 @@ const AddNewArticlePage = () => {
         <div className='button_group flex justify-center'>
           <FormButton
             type='submit'
-            disabled={!isValid}
+            // disabled={!isValid}
             className={'w-44'}>
             {isLoading && <CgSpinnerTwo className='loading-spinner mr-2' />}
-            Add ✏️
+            Submit ✏️
           </FormButton>
         </div>
       </form>
@@ -99,4 +112,4 @@ const AddNewArticlePage = () => {
   );
 };
 
-export default AddNewArticlePage;
+export default EditArticlePage;

@@ -17,7 +17,7 @@ export interface IArticle {
   updatedAt: string;
   user: IUser;
   imageUrl: string;
-  tags: Array<string>;
+  tags: string;
 }
 
 export interface IRegisterForm {
@@ -27,8 +27,8 @@ export interface IRegisterForm {
 }
 
 export interface IArticleForm {
-  title: Pick<IArticle, 'title'>;
-  text: Pick<IArticle, 'text'>;
-  imageUrl?: Pick<IArticle, 'imageUrl'>;
-  tags: Pick<IArticle, 'tags'>;
+  title: string;
+  text: string;
+  imageUrl?: string;
+  tags: string;
 }

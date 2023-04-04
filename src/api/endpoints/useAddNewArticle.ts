@@ -5,7 +5,7 @@ import { api } from '../api';
 import request from 'axios';
 
 export const useAddNewArticle = () => {
-  const [response, setResponse] = useState({});
+  const [response, setResponse] = useState<IArticle>();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -24,7 +24,7 @@ export const useAddNewArticle = () => {
       });
 
       if (res) {
-        setResponse(res);
+        setResponse(res.data);
       }
     } catch (err) {
       if (request.isAxiosError(err) && err.response) {
