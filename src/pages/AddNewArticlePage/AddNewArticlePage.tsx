@@ -23,17 +23,17 @@ const AddNewArticlePage = () => {
     formState: { errors, isValid },
   } = useForm<IArticleForm>({ mode: 'onChange' });
 
-  const { response, isLoading, isError, mutate } = useAddNewArticle();
+  const { data, isLoading, isError, mutate } = useAddNewArticle();
 
   if (isError) {
     alert('ERROR');
   }
 
   useEffect(() => {
-    if (response) {
-      navigate(`/post/${response._id}`);
+    if (data) {
+      navigate(`/post/${data._id}`);
     }
-  }, [response]);
+  }, [data]);
 
   const onHandleSubmit: SubmitHandler<IArticleForm> = formData => {
     mutate(formData);

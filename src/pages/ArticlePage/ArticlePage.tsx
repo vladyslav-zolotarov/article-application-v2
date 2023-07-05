@@ -11,7 +11,11 @@ import {
 
 const ArticlePage = () => {
   const { id } = useParams();
-  const { data, isLoading, isError } = useGetOneArticle(id);
+
+  if (!id) {
+    return null;
+  }
+  const { data, isError } = useGetOneArticle(id)
 
   if (isError) {
     return isError;

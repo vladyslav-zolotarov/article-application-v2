@@ -20,8 +20,12 @@ const EditArticlePage = () => {
   let navigate = useNavigate();
   const { id } = useParams();
 
+  if (!id) {
+    return null;
+  }
+
   const { data, isError, isLoading } = useGetOneArticle(id);
-  const { resolve, rejected, pending, mutate } = useUpdateArticle();
+  const { isLoading: loading, mutate } = useUpdateArticle(id);
   const {
     handleSubmit,
     register,
@@ -30,6 +34,11 @@ const EditArticlePage = () => {
   } = useForm<IArticleForm>({
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    console.log('isLoading', isLoading)
+    console.log('data', data)
+  }, [isLoading])
 
   useEffect(() => {
     if (Array.isArray(data?.tags)) {
@@ -43,7 +52,7 @@ const EditArticlePage = () => {
 
   const onHandleSubmit: SubmitHandler<IArticleForm> = formData => {
     if (data) {
-      mutate(data._id, formData);
+      mutate(formData);
       navigate(-1);
     }
   };

@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { IRegisterForm } from '../../types/types';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { IoRocket } from 'react-icons/io5';
+import { useOnLogin } from '../../api/endpoints/useOnLogin';
 import {
   FormButton,
   FormInput,
@@ -10,7 +11,6 @@ import {
   registerEmail,
   registerPassword,
 } from '../../components/Form/index';
-import { useOnLogin } from '../../api/endpoints/useOnLogin';
 
 const LoginPage = () => {
   const {

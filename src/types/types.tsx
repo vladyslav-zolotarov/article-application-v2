@@ -6,6 +6,7 @@ export interface IUser {
   createdAt: string;
   passwordHash: string;
   updatedAt: string;
+  token: string;
 }
 
 export interface IArticle {

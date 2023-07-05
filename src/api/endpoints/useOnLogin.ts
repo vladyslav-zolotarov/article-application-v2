@@ -1,33 +1,22 @@
-import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { api } from '../api';
-import request from 'axios';
-import { IRegisterForm } from '../../types/types';
+import { IRegisterForm, IUser } from '../../types/types';
 import { useAppStore } from '../../utils/store';
 
 export const useOnLogin = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState();
-
   const { setToken } = useAppStore(state => ({
     setToken: state.setToken,
   }));
 
-  const mutate = async (formData: IRegisterForm) => {
-    try {
-      setIsLoading(true);
-
+  return useMutation({
+    mutationFn: async (formData: IRegisterForm): Promise<IUser> => {
       const response = await api.post('/auth/login', formData);
-      if ('token' in response.data) {
-        setToken(response.data.token, response.data._id);
+      return response.data;
+    },
+    onSuccess: data => {
+      if ('token' in data) {
+        setToken(data.token, data._id);
       }
-    } catch (err) {
-      if (request.isAxiosError(err) && err.response) {
-        setIsError(err.response.data.message);
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return { isLoading, isError, mutate };
+    },
+  });
 };

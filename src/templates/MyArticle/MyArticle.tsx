@@ -8,10 +8,8 @@ import {
 import { IArticle } from '../../types/types';
 import { FaPencilAlt, FaTrash } from 'react-icons/fa';
 import { useRemoveArticle } from '../../api/endpoints/useRemoveArticle';
-import { MouseEvent, useEffect, useState } from 'react';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { useArticleStore, useAppStore } from '../../utils/store';
-import { Modal } from '../../components/Modal/Modal';
 import { useModal } from '../../components/Modal/useModal';
 import { ConfirmationModal } from '../ConfirmationModal/ConfirmationModal';
 import { Link } from 'react-router-dom';
@@ -21,12 +19,12 @@ interface MyArticleProps {
 }
 
 const MyArticle = ({ article }: MyArticleProps) => {
-  const { resolve, rejected, pending, mutate } = useRemoveArticle();
   const { isShowModal, toggleShowModal } = useModal();
-
   const { userId } = useAppStore(state => ({
     userId: state.userId,
   }));
+
+  const { isLoading, mutate } = useRemoveArticle();
 
   const { myArticleList, setMyArticleList } = useArticleStore(state => ({
     myArticleList: state.myArticleList,
@@ -34,11 +32,13 @@ const MyArticle = ({ article }: MyArticleProps) => {
   }));
 
   const removeArticle = () => {
-    mutate(article?._id);
-    setMyArticleList(
-      myArticleList.filter(art => art._id !== article?._id),
-      userId
-    );
+    if (article) {
+      mutate(article._id);
+      setMyArticleList(
+        myArticleList.filter(art => art._id !== article?._id),
+        userId
+      );
+    }
   };
 
   return (
@@ -88,7 +88,7 @@ const MyArticle = ({ article }: MyArticleProps) => {
             <button
               className='article-btn mx-2'
               onClick={toggleShowModal}>
-              {pending ? (
+              {isLoading ? (
                 <CgSpinnerTwo className='loading-spinner' />
               ) : (
                 <FaTrash />
