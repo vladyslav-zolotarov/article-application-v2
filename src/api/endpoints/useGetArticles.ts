@@ -1,38 +1,12 @@
-import { useEffect, useState } from 'react';
-import request from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import { IArticle } from '../../types/types';
-import { useArticleStore } from '../../utils/store';
 import { api } from '../api';
 
-export const useGetArticles = (userId?: string) => {
-  const [data, setData] = useState<IArticle[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState();
+export const useGetArticles = () => {
+  const fetchArticles = async (): Promise<IArticle[]> => {
+    const response = await api.get('/posts');
+    return response.data;
+  };
 
-  const { setMyArticleList } = useArticleStore(state => ({
-    setMyArticleList: state.setMyArticleList,
-  }));
-
-  useEffect(() => {
-    (async () => {
-      try {
-        setIsLoading(true);
-
-        const response = await api.get('/posts');
-
-        setData(response.data);
-        if (userId) {
-          setMyArticleList(response.data, userId);
-        }
-      } catch (err) {
-        if (request.isAxiosError(err) && err.response) {
-          setIsError(err.response.data.message);
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, []);
-
-  return { data, isLoading, isError };
+  return useQuery({ queryKey: ['articles'], queryFn: fetchArticles });
 };

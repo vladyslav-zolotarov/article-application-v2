@@ -3,19 +3,28 @@ import MyArticle from '../MyArticle/MyArticle';
 import { useLocation } from 'react-router-dom';
 import { useAppStore, useArticleStore } from '../../utils/store';
 import { useGetArticles } from '../../api/endpoints/useGetArticles';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 const ArticleList = () => {
   const location = useLocation();
 
-  const { myArticleList } = useArticleStore(state => ({
+  const { myArticleList, setMyArticleList } = useArticleStore(state => ({
     myArticleList: state.myArticleList,
+    setMyArticleList: state.setMyArticleList,
   }));
 
   const { userId } = useAppStore(state => ({
     userId: state.userId,
   }));
 
-  const { data, isError, isLoading } = useGetArticles(userId);
+  const { data, isLoading, isError } = useGetArticles();
+
+  useEffect(() => {
+    if (userId && data) {
+      setMyArticleList(data, userId);
+    }
+  }, [data])
 
   const ArticleListSkeleton = (text: string) => {
     return (
