@@ -1,6 +1,6 @@
-import { api } from '../api';
-import { useAppStore } from '../../utils/store';
-import { IArticleForm } from '../../types/types';
+import { api } from '../utils/api/api';
+import { useAppStore } from '../utils/store';
+import { IArticleForm } from '../utils/types/types';
 import {
   QueryClient,
   useMutation,

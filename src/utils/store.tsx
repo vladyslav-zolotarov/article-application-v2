@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import { IArticle } from '../types/types';
+import { IArticle } from './types/types';
 
 interface ArticleState {
   myArticleList: IArticle[];

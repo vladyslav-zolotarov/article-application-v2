@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { IRegisterForm } from '../../types/types';
+import { IRegisterForm } from '../../utils/types/types';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { IoRocket } from 'react-icons/io5';
 import {
@@ -11,7 +11,7 @@ import {
   registerPassword,
   registerFullName,
 } from '../../components/Form/index';
-import { useOnRegister } from '../../api/endpoints/useOnRegister';
+import { useOnRegister } from '../../endpoints/useOnRegister';
 
 const RegisterPage = () => {
   const {

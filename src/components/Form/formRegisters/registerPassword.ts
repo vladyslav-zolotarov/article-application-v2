@@ -1,5 +1,5 @@
 import { UseFormRegister } from 'react-hook-form';
-import { IRegisterForm } from '../../../types/types';
+import { IRegisterForm } from '../../../utils/types/types';
 
 export const registerPassword = (register: UseFormRegister<IRegisterForm>) =>
   register('password', {

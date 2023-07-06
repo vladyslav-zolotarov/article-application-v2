@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import { IArticle, IArticleForm } from '../../types/types';
-import { useAppStore } from '../../utils/store';
-import { api } from '../api';
+import { IArticle, IArticleForm } from '../utils/types/types';
+import { useAppStore } from '../utils/store';
+import { api } from '../utils/api/api';
 
 export const useAddNewArticle = () => {
   const { token } = useAppStore(state => ({

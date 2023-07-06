@@ -1,18 +1,18 @@
+import { FaPencilAlt, FaTrash } from 'react-icons/fa';
+import { CgSpinnerTwo } from 'react-icons/cg';
+import { Link } from 'react-router-dom';
 import {
   ArticleDate,
   ArticleImage,
   ArticleTags,
   ArticleTitle,
   ArticleViewCount,
-} from '../../components/Article';
-import { IArticle } from '../../types/types';
-import { FaPencilAlt, FaTrash } from 'react-icons/fa';
-import { useRemoveArticle } from '../../api/endpoints/useRemoveArticle';
-import { CgSpinnerTwo } from 'react-icons/cg';
-import { useArticleStore, useAppStore } from '../../utils/store';
-import { useModal } from '../../components/Modal/useModal';
-import { ConfirmationModal } from '../ConfirmationModal/ConfirmationModal';
-import { Link } from 'react-router-dom';
+} from '../../../components/Article';
+import { IArticle } from '../../../utils/types/types';
+import { useRemoveArticle } from '../../../endpoints/useRemoveArticle';
+import { useAppStore, useArticleStore } from '../../../utils/store';
+import { useModal } from '../../../components/Modal/useModal';
+import { ConfirmationModal } from '../../../components/Modal/ConfirmationModal/ConfirmationModal';
 
 interface MyArticleProps {
   article?: IArticle;

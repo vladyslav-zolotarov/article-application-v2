@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../api';
-import { IUser } from '../../types/types';
+import { api } from '../utils/api/api';
+import { IUser } from '../utils/types/types';
 
 export const useGetMe = (token: string) => {
-  const fetchUserInfo = async (token: string): Promise<IUser> => {
+  const fetchUserInfo = async (): Promise<IUser> => {
     const response = await api.get('/auth/me', {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -14,6 +14,6 @@ export const useGetMe = (token: string) => {
 
   return useQuery({
     queryKey: ['userInfo', token],
-    queryFn: () => fetchUserInfo(token),
+    queryFn: () => fetchUserInfo(),
   });
 };

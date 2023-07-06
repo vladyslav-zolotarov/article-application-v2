@@ -6,8 +6,8 @@ import {
   ArticleTitle,
   ArticleViewCount,
   ArticleUserGroup,
-} from '../../components/Article';
-import { IArticle } from '../../types/types';
+} from '../../../components/Article';
+import { IArticle } from '../../../utils/types/types';
 
 interface ArticleProps {
   article?: IArticle;

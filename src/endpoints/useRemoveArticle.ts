@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
-import { api } from '../api';
-import { useAppStore } from '../../utils/store';
+import { api } from '../utils/api/api';
+import { useAppStore } from '../utils/store';
 
 export const useRemoveArticle = () => {
   const { token } = useAppStore(state => ({

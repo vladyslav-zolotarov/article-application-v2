@@ -1,6 +1,6 @@
 import React from 'react';
 import format from 'date-fns/format';
-import { IArticle } from '../../../types/types';
+import { IArticle } from '../../../utils/types/types';
 import { twMerge } from 'tailwind-merge';
 
 interface ArticleDateProps extends React.ComponentPropsWithoutRef<'span'> {
