@@ -77,7 +77,6 @@ function App() {
 
             <Route
               path={'/auth/me'}
-            // element={<UserPage />}
             />
             <Route
               path={'/post/:id'}
