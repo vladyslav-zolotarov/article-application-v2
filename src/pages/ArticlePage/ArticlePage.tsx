@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useGetOneArticle } from '../../api/endpoints/useGetOneArticle';
+import { useGetOneArticle } from '../../endpoints/useGetOneArticle';
 import {
   ArticleDate,
   ArticleImage,
@@ -15,10 +15,10 @@ const ArticlePage = () => {
   if (!id) {
     return null;
   }
-  const { data, isError } = useGetOneArticle(id)
+  const { data, isError, error } = useGetOneArticle(id)
 
-  if (isError) {
-    return isError;
+  if (isError && error instanceof Error) {
+    alert(error.message)
   }
 
   return (

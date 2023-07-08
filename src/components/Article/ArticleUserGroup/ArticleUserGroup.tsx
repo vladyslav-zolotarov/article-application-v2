@@ -1,7 +1,7 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import { UserAvatar, UserCreatedAt, UserFullName } from '../../User';
-import { IUser } from '../../../types/types';
+import { IUser } from '../../../utils/types/types';
 
 interface ArticleUserGroupProps extends React.ComponentPropsWithoutRef<'div'> {
   user?: IUser;

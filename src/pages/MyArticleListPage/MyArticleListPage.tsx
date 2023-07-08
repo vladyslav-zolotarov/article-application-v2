@@ -1,4 +1,5 @@
-import ArticleList from '../../templates/ArticleList/ArticleList';
+import ArticleList from "../ArticlePage/ArticleList/ArticleList";
+
 
 const MyArticleListPage = () => {
   return (

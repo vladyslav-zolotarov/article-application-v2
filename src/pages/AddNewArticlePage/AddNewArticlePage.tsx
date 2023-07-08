@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAddNewArticle } from '../../api/endpoints/useAddNewArticle';
+import { useAddNewArticle } from '../../endpoints/useAddNewArticle';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -13,7 +13,7 @@ import {
   registerText,
   registerTitle,
 } from '../../components/Form';
-import { IArticleForm } from '../../types/types';
+import { IArticleForm } from '../../utils/types/types';
 
 const AddNewArticlePage = () => {
   let navigate = useNavigate();

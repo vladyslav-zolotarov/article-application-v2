@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import { api } from '../api';
-import { IRegisterForm, IUser } from '../../types/types';
-import { useAppStore } from '../../utils/store';
+import { api } from '../utils/api/api';
+import { IRegisterForm, IUser } from '../utils/types/types';
+import { useAppStore } from '../utils/store';
 
 export const useOnRegister = () => {
   const { setToken } = useAppStore(state => ({

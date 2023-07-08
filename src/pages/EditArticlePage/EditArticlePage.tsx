@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -12,9 +12,9 @@ import {
   registerText,
   registerTitle,
 } from '../../components/Form';
-import { IArticleForm } from '../../types/types';
-import { useGetOneArticle } from '../../api/endpoints/useGetOneArticle';
-import { useUpdateArticle } from '../../api/endpoints/useUpdateArticle';
+import { IArticleForm } from '../../utils/types/types';
+import { useGetOneArticle } from '../../endpoints/useGetOneArticle';
+import { useUpdateArticle } from '../../endpoints/useUpdateArticle';
 
 const EditArticlePage = () => {
   let navigate = useNavigate();
@@ -26,6 +26,7 @@ const EditArticlePage = () => {
 
   const { data, isError, isLoading } = useGetOneArticle(id);
   const { isLoading: loading, mutate } = useUpdateArticle(id);
+
   const {
     handleSubmit,
     register,
@@ -34,11 +35,6 @@ const EditArticlePage = () => {
   } = useForm<IArticleForm>({
     mode: 'onChange',
   });
-
-  useEffect(() => {
-    console.log('isLoading', isLoading)
-    console.log('data', data)
-  }, [isLoading])
 
   useEffect(() => {
     if (Array.isArray(data?.tags)) {

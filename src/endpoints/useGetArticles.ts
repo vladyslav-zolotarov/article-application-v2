@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { IArticle } from '../../types/types';
-import { api } from '../api';
+import { IArticle } from '../utils/types/types';
+import { api } from '../utils/api/api';
 
 export const useGetArticles = () => {
   const fetchArticles = async (): Promise<IArticle[]> => {
@@ -8,5 +8,8 @@ export const useGetArticles = () => {
     return response.data;
   };
 
-  return useQuery({ queryKey: ['articles'], queryFn: fetchArticles });
+  return useQuery({
+    queryKey: ['articles'],
+    queryFn: fetchArticles,
+  });
 };

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { IArticle } from '../../types/types';
-import { api } from '../api';
+import { IArticle } from '../utils/types/types';
+import { api } from '../utils/api/api';
 
 export const useGetOneArticle = (id: string) => {
   const fetchOneArticle = async (id: string): Promise<IArticle> => {

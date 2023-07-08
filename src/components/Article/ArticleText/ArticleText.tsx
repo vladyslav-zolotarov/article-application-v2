@@ -1,5 +1,5 @@
 import React from 'react';
-import { IArticle } from '../../../types/types';
+import { IArticle } from '../../../utils/types/types';
 import { twMerge } from 'tailwind-merge';
 
 interface ArticleTextProps extends React.ComponentPropsWithoutRef<'span'> {

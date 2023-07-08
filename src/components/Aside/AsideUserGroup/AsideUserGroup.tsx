@@ -3,9 +3,9 @@ import { twMerge } from 'tailwind-merge';
 import { useAppStore } from '../../../utils/store';
 import { IoExitOutline } from 'react-icons/io5';
 import { UserAvatar, UserCreatedAt, UserFullName } from '../../User';
-import { useGetMe } from '../../../api/endpoints/useGetMe';
+import { useGetMe } from '../../../endpoints/useGetMe';
 
-interface AsideUserGroupProps extends React.ComponentPropsWithoutRef<'div'> {}
+interface AsideUserGroupProps extends React.ComponentPropsWithoutRef<'div'> { }
 
 export const AsideUserGroup = (props: AsideUserGroupProps) => {
   const { className, children } = props;
@@ -15,10 +15,10 @@ export const AsideUserGroup = (props: AsideUserGroupProps) => {
     setToken: state.setToken,
   }));
 
-  const { data, isError } = useGetMe(token);
+  const { data, error, isError } = useGetMe(token);
 
-  if (isError) {
-    return isError;
+  if (isError && error instanceof Error) {
+    alert(error.message);
   }
 
   const content = () => {

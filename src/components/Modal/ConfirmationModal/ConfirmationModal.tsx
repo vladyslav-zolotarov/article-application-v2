@@ -1,4 +1,4 @@
-import { Modal } from '../../components/Modal/Modal';
+import { Modal } from '../Modal';
 import { GrFormClose } from 'react-icons/gr';
 
 interface ConfirmationModalProps extends React.ComponentPropsWithoutRef<'div'> {

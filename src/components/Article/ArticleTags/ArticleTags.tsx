@@ -1,5 +1,5 @@
 import React from 'react';
-import { IArticle } from '../../../types/types';
+import { IArticle } from '../../../utils/types/types';
 import { twMerge } from 'tailwind-merge';
 
 interface ArticleTagsProps extends React.ComponentPropsWithoutRef<'li'> {
@@ -13,25 +13,25 @@ export const ArticleTags = (props: ArticleTagsProps) => {
     <ul className='article-tags flex items-center'>
       {article
         ? article.tags[0].split(' ').map((tag, key) => {
-            return (
-              <li
-                className={twMerge(
-                  'bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full',
-                  className
-                )}
-                key={article.text + tag + key}>
-                #{tag}
-              </li>
-            );
-          })
+          return (
+            <li
+              className={twMerge(
+                'bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full',
+                className
+              )}
+              key={article.text + tag + key}>
+              #{tag}
+            </li>
+          );
+        })
         : [...Array(5)].map((item, key) => {
-            return (
-              <li
-                key={key}
-                className='article-tags --skeleton bg-gray-200 h-4 w-14 mr-2 px-2.5 py-0.5 rounded-full'
-              />
-            );
-          })}
+          return (
+            <li
+              key={key}
+              className='article-tags --skeleton bg-gray-200 h-4 w-14 mr-2 px-2.5 py-0.5 rounded-full'
+            />
+          );
+        })}
     </ul>
   );
 };
