@@ -1,27 +1,12 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { IoRocket, IoHome, IoDocumentText, IoCreate } from 'react-icons/io5';
-import { twMerge } from 'tailwind-merge';
 import { AsideNavigation, AsideUserGroup } from '../../components/Aside';
 
 
-interface AsideProps extends React.ComponentPropsWithoutRef<'aside'> {
-  contentWidthFullScreen: boolean;
-}
 
-const Aside = (props: AsideProps) => {
-  const { className, children, contentWidthFullScreen } = props;
-
-  if (contentWidthFullScreen) {
-    return null;
-  }
-
+const Aside = () => {
   return (
-    <aside
-      className={twMerge(
-        'flex flex-col w-72 pt-7 m-7 shadow rounded-lg fixed bg-white text-blue-900',
-        className
-      )}>
+    <aside className='flex flex-col w-72 pt-7 m-7 shadow rounded-lg fixed bg-white text-blue-900'>
       <div className='logo flex items-center px-7 mb-5'>
         <IoRocket className='h-8 w-8 mr-5' />
         <h1 className='text-xl font-bold'>Article application</h1>

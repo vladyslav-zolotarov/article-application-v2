@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import AddNewArticlePage from './pages/AddNewArticlePage/AddNewArticlePage';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
 import EditArticlePage from './pages/EditArticlePage/EditArticlePage';
@@ -11,38 +10,25 @@ import Aside from './layouts/Aside/Aside';
 import { useAppStore } from './utils/store';
 
 function App() {
-  const [contentWidthFullScreen, setContentWidthFullScreen] = useState(false);
-  const location = useLocation();
-
   const { token } = useAppStore(state => ({
     token: state.token,
   }));
 
-  useEffect(() => {
-    if (
-      location.pathname === '/auth/register' ||
-      location.pathname === '/auth/login'
-    ) {
-      setContentWidthFullScreen(true);
-    } else {
-      setContentWidthFullScreen(false);
-    }
-  }, [location]);
-
   return (
     <div className='App flex flex-col min-h-screen'>
       <div className='flex-1 text-slate-900 dark:text-slate-300 bg-gray-100 relative'>
-        <Aside contentWidthFullScreen={contentWidthFullScreen} />
-        <div className={!contentWidthFullScreen ? 'p-7 ml-80' : 'p-7'}>
+        {token && <Aside />}
+
+        <div className={token ? 'p-7 ml-80' : 'p-7'}>
           <Routes>
+            {/* {!token &&
+              <Route path='/*' element={<Navigate to='/auth/login' replace />} />
+            } */}
             <Route
               path='/'
               element={
                 !token ? (
-                  <Navigate
-                    to='/auth/login'
-                    replace
-                  />
+                  <Navigate to='/auth/login' replace />
                 ) : (
                   <HomePage />
                 )
@@ -52,10 +38,7 @@ function App() {
               path={'/auth/register'}
               element={
                 token ? (
-                  <Navigate
-                    to='/'
-                    replace
-                  />
+                  <Navigate to='/' replace />
                 ) : (
                   <RegisterPage />
                 )
@@ -65,10 +48,7 @@ function App() {
               path={'/auth/login'}
               element={
                 token ? (
-                  <Navigate
-                    to='/'
-                    replace
-                  />
+                  <Navigate to='/' replace />
                 ) : (
                   <LoginPage />
                 )
@@ -76,18 +56,12 @@ function App() {
             />
 
             <Route
-              path={'/auth/me'}
-            />
-            <Route
               path={'/post/:id'}
               element={
                 token ? (
                   <ArticlePage />
                 ) : (
-                  <Navigate
-                    to='/'
-                    replace
-                  />
+                  <Navigate to='/' replace />
                 )
               }
             />
@@ -96,10 +70,7 @@ function App() {
               path={'/posts/my'}
               element={
                 !token ? (
-                  <Navigate
-                    to='/auth/login'
-                    replace
-                  />
+                  <Navigate to='/auth/login' replace />
                 ) : (
                   <MyArticleListPage />
                 )
@@ -109,10 +80,7 @@ function App() {
               path={'/post/create'}
               element={
                 !token ? (
-                  <Navigate
-                    to='/auth/login'
-                    replace
-                  />
+                  <Navigate to='/auth/login' replace />
                 ) : (
                   <AddNewArticlePage />
                 )
@@ -122,10 +90,7 @@ function App() {
               path={'/post/edit/:id'}
               element={
                 !token ? (
-                  <Navigate
-                    to='/auth/login'
-                    replace
-                  />
+                  <Navigate to='/auth/login' replace />
                 ) : (
                   <EditArticlePage />
                 )
