@@ -1,15 +1,11 @@
 import Article from '../Article/Article';
 import MyArticle from '../MyArticle/MyArticle';
-import { useLocation } from 'react-router-dom';
-
-
-import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useGetArticles } from '../../../endpoints/useGetArticles';
 import { useAppStore, useArticleStore } from '../../../utils/store';
 
 const ArticleList = () => {
-  const location = useLocation();
+  const location = window.location;
 
   const { myArticleList, setMyArticleList } = useArticleStore(state => ({
     myArticleList: state.myArticleList,
