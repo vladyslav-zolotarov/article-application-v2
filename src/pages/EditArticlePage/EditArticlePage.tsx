@@ -24,14 +24,14 @@ const EditArticlePage = () => {
     return null;
   }
 
-  const { data, isError, isLoading } = useGetOneArticle(id);
-  const { isLoading: loading, mutate } = useUpdateArticle(id);
+  const { data, isError, isLoading, isFetching } = useGetOneArticle(id);
+  const { isLoading: loading, isSuccess, mutate } = useUpdateArticle(id);
 
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<IArticleForm>({
     mode: 'onChange',
   });
@@ -55,6 +55,14 @@ const EditArticlePage = () => {
 
   return (
     <div className='add_new_article_page__container'>
+      {isLoading || isFetching && <div className='loading-wrapper'>
+        <h2 className='loading-text'>Loading...</h2>
+      </div>}
+
+      {isError && <div className='loading-wrapper'>
+        <h2 className='loading-text'>Error...</h2>
+      </div>}
+
       <h1 className='mb-6 text-6xl font-extrabold text-gray-900 text-center'>
         Edit article
       </h1>
@@ -108,7 +116,7 @@ const EditArticlePage = () => {
             type='submit'
             // disabled={!isValid}
             className={'w-44'}>
-            {isLoading && <CgSpinnerTwo className='loading-spinner mr-2' />}
+            {loading && <CgSpinnerTwo className='loading-spinner mr-2' />}
             Submit ✏️
           </FormButton>
         </div>

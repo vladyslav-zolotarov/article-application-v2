@@ -11,6 +11,7 @@ import {
   registerEmail,
   registerPassword,
 } from '../../components/Form/index';
+import axios from 'axios';
 
 const LoginPage = () => {
   const {
@@ -19,7 +20,7 @@ const LoginPage = () => {
     formState: { errors, isValid },
   } = useForm<IRegisterForm>({ mode: 'onChange' });
 
-  const { isError, isLoading, mutate } = useOnLogin();
+  const { error, isError, isLoading, mutate } = useOnLogin();
 
   const onHandleSubmit: SubmitHandler<IRegisterForm> = async formData => {
     mutate(formData);
@@ -71,7 +72,7 @@ const LoginPage = () => {
 
         {isError && (
           <div className='relative mt-5 flex justify-center'>
-            <FormErrorMessage>{isError}</FormErrorMessage>
+            <FormErrorMessage>{axios.isAxiosError(error) ? error.response?.data?.message : null}</FormErrorMessage>
           </div>
         )}
       </form>
