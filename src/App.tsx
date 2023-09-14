@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MyArticleListPage from './pages/MyArticleListPage/MyArticleListPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
+import Aside from './layouts/Aside/Aside';
 import { useAppStore } from './utils/store';
 import { Layout } from './layouts/Layout';
 
