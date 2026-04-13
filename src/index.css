@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* test */
+
 .modal-overlay {
   z-index: 9999;
   width: 100vw;
@@ -26,7 +29,6 @@
 /* loading / error */
 .loading-wrapper {
   @apply fixed left-0 top-0 h-screen w-full flex justify-center items-center bg-gray-600 opacity-30;
-  z-index: 100;
 }
 
 .loading-text {
